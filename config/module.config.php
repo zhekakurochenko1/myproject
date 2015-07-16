@@ -1,27 +1,32 @@
-<?php 
+<?php
 return array(
-			'invokables' => array(
-				'DBwork\Controller\DBwork => 'DBwork\Controller\DBworkController',
-				),
-			),
-'router' => array(
+    'controllers' => array(
+        'invokables' => array(
+            'Cars\Controller\Cars' => 'Cars\Controller\CarsController',
+        ),
+    ),
+    // The following section is new and should be added to your file
+    'router' => array(
         'routes' => array(
-            'dbwork' => array(
+            'cars' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/dbwork[/:action][/:id]',
+                    'route'    => '/cars[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'DBwork\Controller\DBwork',
+                        'controller' => 'Cars\Controller\Cars',
                         'action'     => 'index',
                     ),
                 ),
             ),
         ),
     ),
-
-
-?>
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'cars' => __DIR__ . '/../view',
+        ),
+    ),
+);

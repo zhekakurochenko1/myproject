@@ -1,8 +1,8 @@
 <?php
-namespace DBwork;
+namespace Cars;
 
-use DBwork\Model\DBwork;
-use DBwork\Model\DBworkTable;
+use Cars\Model\Cars;
+use Cars\Model\CarsTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -26,16 +26,16 @@ class Module
     {
         return array(
             'factories' => array(
-                'DBwork\Model\DBworkTable' =>  function($sm) {
-                    $tableGateway = $sm->get('DBworkTableGateway');
-                    $table = new DBworkTable($tableGateway);
+                'Cars\Model\CarsTable' =>  function($sm) {
+                    $tableGateway = $sm->get('CarsTableGateway');
+                    $table = new carsTable($tableGateway);
                     return $table;
                 },
-                'DBworkTableGateway' => function ($sm) {
+                'CarsTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new DBwork());
-                    return new TableGateway('dbwork', $dbAdapter, null, $resultSetPrototype);
+                    $resultSetPrototype->setArrayObjectPrototype(new Cars());
+                    return new TableGateway('cars', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );
