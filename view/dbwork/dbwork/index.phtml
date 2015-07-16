@@ -1,0 +1,30 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'My cars';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('dbwork', array('action'=>'add'));?>">Add cars</a>
+</p>
+
+<table class="table"> 
+<tr>
+    <th>Names</th>
+    <th>Images</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($dbworks as $dbwork) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($dbwork->names);?></td>
+    <td><?php echo $this->escapeHtml($dbwork->images);?></td>
+    <td>
+        <a href="<?php echo $this->url('dbwork',
+            array('action'=>'edit', 'id' => $dbwork->id));?>">Edit</a>
+        <a href="<?php echo $this->url('dbwork',
+            array('action'=>'delete', 'id' => $dbwork->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
